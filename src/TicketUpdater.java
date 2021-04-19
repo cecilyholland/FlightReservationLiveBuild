@@ -1,5 +1,8 @@
 import java.util.Scanner;
-
+/**
+ * 
+ * class that allows the customer to make changes to their ticket
+ */
 public class TicketUpdater {
     private String makeChanges;
     private int changeSelection;
@@ -8,13 +11,20 @@ public class TicketUpdater {
     private Ticket ticket;
     private Flight flight;
     FlightManager changeSeatObj = new FlightManager();
-
+/**
+* setters
+* @param ticket1
+* @param chosenFlight
+*/
     public TicketUpdater(Ticket ticket1, Flight chosenFlight)
     {
         ticket = ticket1;
         flight = chosenFlight;
     }
-
+/**
+ * takes in customers change selection
+ * @param chosenFlight 
+ */
     public  void  changeLoop(Flight chosenFlight){
         do {
             makeChanges = setMakeChanges();
@@ -37,18 +47,28 @@ public class TicketUpdater {
             }
         } while(makeChanges.trim().equalsIgnoreCase("y"));
     }
-
+/**
+ * 
+ * @return makeChanges
+ */
     private String setMakeChanges(){
         System.out.print("Would you like to make any changes to your reservation? (Y/N)");
         makeChanges = in.next();
         return makeChanges;
     }
+/**
+* provides the user with the change options available
+*/
     private void print(){
         System.out.println("What would you like to change on your ticket?");
         System.out.println("Press 1 to change the name on the ticket");
         System.out.println("Press 2 to change the reserved seat");
         System.out.println("Press 3 to cancel your ticket");
     }
+     /**
+     * 
+     * @return change selection
+     */
     private int getSelection(){
         //Scanner in = new Scanner(System.in);
         changeSelection = in.nextInt();
@@ -56,7 +76,9 @@ public class TicketUpdater {
         System.out.println();
         return changeSelection;
     }
-
+/**
+ * updates name on ticket
+ */
     public void updateName()
     {
         System.out.print("Enter a new name: ");
@@ -67,6 +89,9 @@ public class TicketUpdater {
         System.out.println("Name has been successfully changed.");
         ticket.print();
     }
+ /**
+ * updates seat on ticket
+ */
     public void changeSeat(Flight chosenFlight)
     {
         flight.cancelSeatReservation(ticket.getSeatNum());
@@ -83,7 +108,9 @@ public class TicketUpdater {
         System.out.println("Seat has been successfully changed.");
         ticket2.print();
     }
-
+/**
+ * cancels reservation
+ */
     public void cancelTicket()
     {
         ticket.cancelTicket();
